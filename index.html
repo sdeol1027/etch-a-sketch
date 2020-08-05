@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>etch-a-sketch</title>
+    </head>
+    <body>
+        <div id='container'></div>
+        <script>
+            const divContainer = document.getElementById('container');
+            
+            divContainer.setAttribute('style', 'display: grid; grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto; padding: 10px');
+
+            for (let i = 0; i < 16 * 16; i++) {
+                const divItem = document.createElement('div');
+                divItem.setAttribute('style', 'background-color = blue; border: 1px solid black; padding: 20px');
+                divItem.setAttribute('id', `square-${ i }`);
+                divContainer.appendChild(divItem);
+            }
+
+        </script>
+    </body>
+</html>
