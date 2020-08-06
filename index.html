@@ -4,6 +4,7 @@
         <title>etch-a-sketch</title>
     </head>
     <body>
+        <button id='btn'>Clear Me</button>
         <div id='container'></div>
         <script>
             const divContainer = document.getElementById('container');
@@ -12,10 +13,53 @@
 
             for (let i = 0; i < 16 * 16; i++) {
                 const divItem = document.createElement('div');
-                divItem.setAttribute('style', 'background-color = blue; border: 1px solid black; padding: 20px');
-                divItem.setAttribute('id', `square-${ i }`);
+                divItem.setAttribute('style', 'border: 1px solid black; padding: 20px');
+                divItem.classList.add('square');
                 divContainer.appendChild(divItem);
             }
+
+            const squares = document.querySelectorAll('.square');
+            
+            squares.forEach((square) => {
+
+                square.addEventListener('mouseover', () => {
+                    square.style.backgroundColor = 'red';
+                });         
+            });
+
+            btn.addEventListener('click', () => {
+                const oldSquares = document.querySelectorAll('.square');
+                
+                oldSquares.forEach((oldSquare) => {
+                    container.removeChild(oldSquare);
+                });
+                
+                let size = prompt('How many squares per side?');
+                
+                let columnSize = '';
+                
+                for (let i = 0; i < size; i++) {
+                    columnSize += 'auto ';
+                } 
+                
+                divContainer.setAttribute('style', 'display: grid; grid-template-columns: ' + columnSize);
+                
+                for (let i = 0; i < size * size; i++) {
+                    const newDivItem = document.createElement('div');
+                    newDivItem.setAttribute('style', 'border: 1px solid black; padding: 20px');
+                    newDivItem.classList.add('square');
+                    divContainer.appendChild(newDivItem);
+                }
+
+                const newSquares = document.querySelectorAll('.square');
+            
+                newSquares.forEach((newSquare) => {
+
+                newSquare.addEventListener('mouseover', () => {
+                    newSquare.style.backgroundColor = 'red';
+                });         
+            });
+            });
 
         </script>
     </body>
